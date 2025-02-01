@@ -223,7 +223,8 @@ std::vector<mint> convolution(std::vector<mint>&& a, std::vector<mint>&& b) {
     int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
     assert((mint::mod() - 1) % z == 0);
 
-    if (std::min(n, m) <= 60) return convolution_naive(std::move(a), std::move(b));
+    if (std::min(n, m) <= 60)
+        return convolution_naive(std::move(a), std::move(b));
     return internal::convolution_fft(std::move(a), std::move(b));
 }
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
@@ -266,8 +267,8 @@ std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {
     return c;
 }
 
-std::vector<long long> convolution_ll(const std::vector<long long>& a,
-                                      const std::vector<long long>& b) {
+inline std::vector<long long> convolution_ll(const std::vector<long long>& a,
+                                             const std::vector<long long>& b) {
     int n = int(a.size()), m = int(b.size());
     if (!n || !m) return {};
 
@@ -285,11 +286,14 @@ std::vector<long long> convolution_ll(const std::vector<long long>& a,
         internal::inv_gcd(MOD1 * MOD3, MOD2).second;
     static constexpr unsigned long long i3 =
         internal::inv_gcd(MOD1 * MOD2, MOD3).second;
-        
+
     static constexpr int MAX_AB_BIT = 24;
-    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1, "MOD1 isn't enough to support an array length of 2^24.");
-    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1, "MOD2 isn't enough to support an array length of 2^24.");
-    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1, "MOD3 isn't enough to support an array length of 2^24.");
+    static_assert(MOD1 % (1ull << MAX_AB_BIT) == 1,
+                  "MOD1 isn't enough to support an array length of 2^24.");
+    static_assert(MOD2 % (1ull << MAX_AB_BIT) == 1,
+                  "MOD2 isn't enough to support an array length of 2^24.");
+    static_assert(MOD3 % (1ull << MAX_AB_BIT) == 1,
+                  "MOD3 isn't enough to support an array length of 2^24.");
     assert(n + m - 1 <= (1 << MAX_AB_BIT));
 
     auto c1 = convolution<MOD1>(a, b);

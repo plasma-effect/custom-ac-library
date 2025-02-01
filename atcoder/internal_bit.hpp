@@ -20,7 +20,7 @@ using std::bit_ceil;
 #else
 
 // @return same with std::bit::bit_ceil
-unsigned int bit_ceil(unsigned int n) {
+inline unsigned int bit_ceil(unsigned int n) {
     unsigned int x = 1;
     while (x < (unsigned int)(n)) x *= 2;
     return x;
@@ -30,7 +30,7 @@ unsigned int bit_ceil(unsigned int n) {
 
 // @param n `1 <= n`
 // @return same with std::bit::countr_zero
-int countr_zero(unsigned int n) {
+inline int countr_zero(unsigned int n) {
 #ifdef _MSC_VER
     unsigned long index;
     _BitScanForward(&index, n);

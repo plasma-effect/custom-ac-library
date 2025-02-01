@@ -10,7 +10,7 @@
 
 namespace atcoder {
 
-long long pow_mod(long long x, long long n, int m) {
+inline long long pow_mod(long long x, long long n, int m) {
     assert(0 <= n && 1 <= m);
     if (m == 1) return 0;
     internal::barrett bt((unsigned int)(m));
@@ -23,7 +23,7 @@ long long pow_mod(long long x, long long n, int m) {
     return r;
 }
 
-long long inv_mod(long long x, long long m) {
+inline long long inv_mod(long long x, long long m) {
     assert(1 <= m);
     auto z = internal::inv_gcd(x, m);
     assert(z.first == 1);
@@ -31,8 +31,8 @@ long long inv_mod(long long x, long long m) {
 }
 
 // (rem, mod)
-std::pair<long long, long long> crt(const std::vector<long long>& r,
-                                    const std::vector<long long>& m) {
+inline std::pair<long long, long long> crt(const std::vector<long long>& r,
+                                           const std::vector<long long>& m) {
     assert(r.size() == m.size());
     int n = int(r.size());
     // Contracts: 0 <= r0 < m0
@@ -79,7 +79,7 @@ std::pair<long long, long long> crt(const std::vector<long long>& r,
     return {r0, m0};
 }
 
-long long floor_sum(long long n, long long m, long long a, long long b) {
+inline long long floor_sum(long long n, long long m, long long a, long long b) {
     assert(0 <= n && n < (1LL << 32));
     assert(1 <= m && m < (1LL << 32));
     unsigned long long ans = 0;

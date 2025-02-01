@@ -11,7 +11,7 @@ namespace atcoder {
 
 namespace internal {
 
-std::vector<int> sa_naive(const std::vector<int>& s) {
+inline std::vector<int> sa_naive(const std::vector<int>& s) {
     int n = int(s.size());
     std::vector<int> sa(n);
     std::iota(sa.begin(), sa.end(), 0);
@@ -27,7 +27,7 @@ std::vector<int> sa_naive(const std::vector<int>& s) {
     return sa;
 }
 
-std::vector<int> sa_doubling(const std::vector<int>& s) {
+inline std::vector<int> sa_doubling(const std::vector<int>& s) {
     int n = int(s.size());
     std::vector<int> sa(n), rnk = s, tmp(n);
     std::iota(sa.begin(), sa.end(), 0);
@@ -174,7 +174,7 @@ std::vector<int> sa_is(const std::vector<int>& s, int upper) {
 
 }  // namespace internal
 
-std::vector<int> suffix_array(const std::vector<int>& s, int upper) {
+inline std::vector<int> suffix_array(const std::vector<int>& s, int upper) {
     assert(0 <= upper);
     for (int d : s) {
         assert(0 <= d && d <= upper);
@@ -197,7 +197,7 @@ template <class T> std::vector<int> suffix_array(const std::vector<T>& s) {
     return internal::sa_is(s2, now);
 }
 
-std::vector<int> suffix_array(const std::string& s) {
+inline std::vector<int> suffix_array(const std::string& s) {
     int n = int(s.size());
     std::vector<int> s2(n);
     for (int i = 0; i < n; i++) {
@@ -233,7 +233,8 @@ std::vector<int> lcp_array(const std::vector<T>& s,
     return lcp;
 }
 
-std::vector<int> lcp_array(const std::string& s, const std::vector<int>& sa) {
+inline std::vector<int> lcp_array(const std::string& s,
+                                  const std::vector<int>& sa) {
     int n = int(s.size());
     std::vector<int> s2(n);
     for (int i = 0; i < n; i++) {
@@ -261,7 +262,7 @@ template <class T> std::vector<int> z_algorithm(const std::vector<T>& s) {
     return z;
 }
 
-std::vector<int> z_algorithm(const std::string& s) {
+inline std::vector<int> z_algorithm(const std::string& s) {
     int n = int(s.size());
     std::vector<int> s2(n);
     for (int i = 0; i < n; i++) {
