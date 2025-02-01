@@ -7,8 +7,6 @@ namespace atcoder {
 
 namespace internal {
 
-using std::bit_ceil;
-
 // @param n `1 <= n`
 // @return same with std::bit::countr_zero
 inline int countr_zero(unsigned int n) { return __builtin_ctz(n); }

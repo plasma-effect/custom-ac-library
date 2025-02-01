@@ -20,7 +20,7 @@ template <class S, auto op, auto e> struct segtree {
     segtree() : segtree(0) {}
     explicit segtree(int n) : segtree(std::vector<S>(n, e())) {}
     explicit segtree(const std::vector<S>& v) : _n(int(v.size())) {
-        size = (int)internal::bit_ceil((unsigned int)(_n));
+        size = (int)std::bit_ceil((unsigned int)(_n));
         log = internal::countr_zero((unsigned int)size);
         d = std::vector<S>(2 * size, e());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
