@@ -44,6 +44,7 @@ template <class S, S (*op)(S, S), S (*e)()> struct segtree_naive {
     }
 };
 
+namespace {
 std::string op(std::string a, std::string b) {
     assert(a == "$" || b == "$" || a <= b);
     if (a == "$") return b;
@@ -52,6 +53,7 @@ std::string op(std::string a, std::string b) {
 }
 
 std::string e() { return "$"; }
+}  // namespace
 
 using seg = segtree<std::string, op, e>;
 using seg_naive = segtree_naive<std::string, op, e>;
@@ -97,7 +99,9 @@ TEST(SegtreeTest, One) {
 }
 
 std::string y;
+namespace {
 bool leq_y(std::string x) { return x.size() <= y.size(); }
+}  // namespace
 
 TEST(SegtreeTest, CompareNaive) {
     for (int n = 0; n < 30; n++) {
@@ -145,25 +149,19 @@ TEST(SegtreeTest, Assign) {
     seg0 = seg(10);
 }
 
-#if __cplusplus >= 201703L
-
+namespace {
 std::string op_const(const std::string& a, const std::string& b) {
     assert(a == "$" || b == "$" || a <= b);
     if (a == "$") return b;
     if (b == "$") return a;
     return a + b;
 }
+}  // namespace
 
 TEST(SegtreeTest, ConstFunc) { segtree<std::string, op_const, e> s1(10); }
-
-#endif
-
-#if __cplusplus >= 202002L
 
 TEST(SegtreeTest, LambdaFunc) {
     segtree<std::string, [](std::string a, std::string b) { return a + b; },
             []() { return ""; }>
         s1(10);
 }
-
-#endif

@@ -86,25 +86,17 @@ TEST(LazySegtreeTest, Usage) {
     ASSERT_EQ(0, seg.prod(2, 4));
 }
 
-#if __cplusplus >= 201703L
-
-int op_const(const int& a, const int& b) { return std::max(a, b); }
-
 struct const_starry {
     static int op_ss(const int& a, const int& b) { return std::max(a, b); }
     static int op_ts(const int& a, const int& b) { return a + b; }
     static int op_tt(const int& a, const int& b) { return a + b; }
 };
 
-TEST(SegtreeTest, ConstFunc) {
+TEST(LazySegtreeTest, ConstFunc) {
     lazy_segtree<int, const_starry::op_ss, starry::e_s, int,
                  const_starry::op_ts, const_starry::op_tt, starry::e_t>
         seg(10);
 }
-
-#endif
-
-#if __cplusplus >= 202002L
 
 TEST(LazySegtreeTest, LambdaFunc) {
     lazy_segtree<int, [](int a, int b) { return std::max(a, b); },
@@ -113,5 +105,3 @@ TEST(LazySegtreeTest, LambdaFunc) {
                  [](int a, int b) { return a + b; }, []() { return 0; }>
         seg(10);
 }
-
-#endif

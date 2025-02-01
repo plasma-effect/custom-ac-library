@@ -9,21 +9,7 @@ using uint = unsigned int;
 using ll = long long;
 using ull = unsigned long long;
 
-ll gcd(ll a, ll b) {
-    assert(0 <= a && 0 <= b);
-    if (b == 0) return a;
-    return gcd(b, a % b);
-}
-
-ll pow_mod_naive(ll x, ull n, uint mod) {
-    ull y = (x % mod + mod) % mod;
-    ull z = 1;
-    for (ull i = 0; i < n; i++) {
-        z = (z * y) % mod;
-    }
-    return z % mod;
-}
-
+namespace {
 ll floor_sum_naive(ll n, ll m, ll a, ll b) {
     ll sum = 0;
     for (ll i = 0; i < n; i++) {
@@ -32,15 +18,7 @@ ll floor_sum_naive(ll n, ll m, ll a, ll b) {
     }
     return sum;
 }
-
-bool is_prime_naive(ll n) {
-    assert(0 <= n && n <= std::numeric_limits<int>::max());
-    if (n == 0 || n == 1) return false;
-    for (ll i = 2; i * i <= n; i++) {
-        if (n % i == 0) return false;
-    }
-    return true;
-}
+}  // namespace
 
 TEST(MathTest, PowMod) {
     auto naive = [&](ll x, ll n, int mod) {
@@ -72,7 +50,7 @@ TEST(MathTest, InvBoundHand) {
 TEST(MathTest, InvMod) {
     for (int a = -100; a <= 100; a++) {
         for (int b = 1; b <= 1000; b++) {
-            if (gcd(internal::safe_mod(a, b), b) != 1) continue;
+            if (std::gcd(internal::safe_mod(a, b), b) != 1) continue;
             ll c = inv_mod(a, b);
             ASSERT_LE(0, c);
             ASSERT_LT(c, b);
@@ -117,12 +95,12 @@ TEST(MathTest, CRT2) {
                 for (int d = -10; d <= 10; d++) {
                     auto res = crt({c, d}, {a, b});
                     if (res.second == 0) {
-                        for (int x = 0; x < a * b / gcd(a, b); x++) {
+                        for (int x = 0; x < a * b / std::gcd(a, b); x++) {
                             ASSERT_TRUE(x % a != c || x % b != d);
                         }
                         continue;
                     }
-                    ASSERT_EQ(a * b / gcd(a, b), res.second);
+                    ASSERT_EQ(a * b / std::gcd(a, b), res.second);
                     ASSERT_EQ(internal::safe_mod(c, a), res.first % a);
                     ASSERT_EQ(internal::safe_mod(d, b), res.first % b);
                 }
@@ -139,8 +117,8 @@ TEST(MathTest, CRT3) {
                     for (int e = -5; e <= 5; e++) {
                         for (int f = -5; f <= 5; f++) {
                             auto res = crt({d, e, f}, {a, b, c});
-                            ll lcm = a * b / gcd(a, b);
-                            lcm = lcm * c / gcd(lcm, c);
+                            ll lcm = a * b / std::gcd(a, b);
+                            lcm = lcm * c / std::gcd(lcm, c);
                             if (res.second == 0) {
                                 for (int x = 0; x < lcm; x++) {
                                     ASSERT_TRUE(x % a != d || x % b != e ||
@@ -193,7 +171,7 @@ TEST(MathTest, CRTBound) {
         for (int ph = 0; ph < 2; ph++) {
             for (ll ans : pred) {
                 auto res = crt({ans % a, ans % b}, {a, b});
-                ll lcm = a / gcd(a, b) * b;
+                ll lcm = a / std::gcd(a, b) * b;
                 ASSERT_EQ(lcm, res.second);
                 ASSERT_EQ(ans % lcm, res.first);
             }
@@ -226,41 +204,4 @@ TEST(MathTest, CRTBound) {
             ASSERT_EQ(INF - 1, res.second);
         }
     } while (next_permutation(factor_infn1.begin(), factor_infn1.end()));
-}
-
-std::vector<int> factors(int m) {
-    std::vector<int> result;
-    for (int i = 2; (ll)(i)*i <= m; i++) {
-        if (m % i == 0) {
-            result.push_back(i);
-            while (m % i == 0) {
-                m /= i;
-            }
-        }
-    }
-    if (m > 1) result.push_back(m);
-    return result;
-}
-
-bool is_primitive_root(int m, int g) {
-    assert(1 <= g && g < m);
-    auto prs = factors(m - 1);
-    for (int x : factors(m - 1)) {
-        if (internal::pow_mod_constexpr(g, (m - 1) / x, m) == 1) return false;
-    }
-    return true;
-}
-
-bool is_primitive_root_naive(int m, int g) {
-    assert(1 <= g && g < m);
-    auto prs = factors(m - 1);
-    int x = 1;
-    for (int i = 1; i <= m - 2; i++) {
-        x = (int)((long long)(x)*g % m);
-        // x == n^i
-        if (x == 1) return false;
-    }
-    x = (int)((long long)(x)*g % m);
-    assert(x == 1);
-    return true;
 }

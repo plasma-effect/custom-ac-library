@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "../utils/math.hpp"
 #include <numeric>
+#include "../utils/math.hpp"
 
 TEST(UtilsMathTest, FactorsTest) {
     for (int m = 1; m <= 50000; m++) {
@@ -15,6 +15,7 @@ TEST(UtilsMathTest, FactorsTest) {
     }
 }
 
+namespace {
 bool is_primitive_root_naive(int m, int g) {
     assert(1 <= g && g < m);
     int x = 1;
@@ -27,6 +28,7 @@ bool is_primitive_root_naive(int m, int g) {
     assert(x == 1);
     return true;
 }
+}  // namespace
 
 TEST(UtilsMathTest, IsPrimitiveRootTest) {
     for (int m = 2; m <= 500; m++) {

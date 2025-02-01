@@ -10,29 +10,7 @@ using uint = unsigned int;
 using ll = long long;
 using ull = unsigned long long;
 
-ll gcd(ll a, ll b) {
-    assert(0 <= a && 0 <= b);
-    if (b == 0) return a;
-    return gcd(b, a % b);
-}
-
-ll pow_mod_naive(ll x, ull n, uint mod) {
-    ull y = (x % mod + mod) % mod;
-    ull z = 1;
-    for (ull i = 0; i < n; i++) {
-        z = (z * y) % mod;
-    }
-    return z % mod;
-}
-
-ll floor_sum_naive(ll n, ll m, ll a, ll b) {
-    ll sum = 0;
-    for (ll i = 0; i < n; i++) {
-        sum += (a * i + b) / m;
-    }
-    return sum;
-}
-
+namespace {
 bool is_prime_naive(ll n) {
     assert(0 <= n && n <= std::numeric_limits<int>::max());
     if (n == 0 || n == 1) return false;
@@ -41,6 +19,7 @@ bool is_prime_naive(ll n) {
     }
     return true;
 }
+}  // namespace
 
 TEST(InternalMathTest, Barrett) {
     for (int m = 1; m <= 100; m++) {
@@ -164,7 +143,7 @@ TEST(InternalMathTest, InvGcdBound) {
             if (b <= 0) continue;
             ll a2 = internal::safe_mod(a, b);
             auto eg = internal::inv_gcd(a, b);
-            auto g = gcd(a2, b);
+            auto g = std::gcd(a2, b);
             ASSERT_EQ(g, eg.first);
             ASSERT_LE(0, eg.second);
             ASSERT_LE(eg.second, b / eg.first);
