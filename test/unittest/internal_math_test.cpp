@@ -115,7 +115,6 @@ TEST(InternalMathTest, IsPrime) {
     }
 }
 
-#ifndef _MSC_VER
 TEST(InternalMathTest, SafeMod) {
     std::vector<ll> preds;
     for (int i = 0; i <= 100; i++) {
@@ -134,7 +133,6 @@ TEST(InternalMathTest, SafeMod) {
         }
     }
 }
-#endif
 
 TEST(InternalMathTest, InvGcdBound) {
     std::vector<ll> pred;
@@ -170,9 +168,7 @@ TEST(InternalMathTest, InvGcdBound) {
             ASSERT_EQ(g, eg.first);
             ASSERT_LE(0, eg.second);
             ASSERT_LE(eg.second, b / eg.first);
-#ifndef _MSC_VER
             ASSERT_EQ(g % b, (unsigned __int128)(eg.second) * a2 % b);
-#endif
         }
     }
 }

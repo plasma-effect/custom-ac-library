@@ -75,7 +75,7 @@ TEST(ConvolutionTest, Mid) {
     std::mt19937 mt;
     int n = 1234, m = 2345;
     std::vector<modint998244353> a(n), b(m);
-    
+
     for (int i = 0; i < n; i++) {
         a[i] = mt();
     }
@@ -246,7 +246,6 @@ TEST(ConvolutionTest, SimpleULL) {
     }
 }
 
-#ifndef _MSC_VER
 TEST(ConvolutionTest, SimpleInt128) {
     const int MOD1 = 998244353;
     const int MOD2 = 924844033;
@@ -310,8 +309,6 @@ TEST(ConvolutionTest, SimpleUInt128) {
         }
     }
 }
-
-#endif
 
 TEST(ConvolutionTest, ConvLL) {
     std::mt19937 mt;

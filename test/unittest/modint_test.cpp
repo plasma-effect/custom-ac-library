@@ -123,8 +123,6 @@ TEST(ModintTest, ModIntMax) {
     ASSERT_EQ((mint(INT32_MAX) + mint(INT32_MAX)).val(), 0);
 }
 
-#ifndef _MSC_VER
-
 TEST(ModintTest, Int128) {
     modint::set_mod(998244353);
     ASSERT_EQ(12345678, modint(__int128_t(12345678)).val());
@@ -141,8 +139,6 @@ TEST(ModintTest, Int128) {
     ASSERT_EQ(mint(2).pow(100).val(), mint(__int128_t(1) << 100).val());
     ASSERT_EQ(mint(2).pow(100).val(), mint(__uint128_t(1) << 100).val());
 }
-
-#endif
 
 TEST(ModintTest, Inv) {
     for (int i = 1; i < 10; i++) {

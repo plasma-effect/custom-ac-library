@@ -5,10 +5,6 @@
 #include <numeric>
 #include <type_traits>
 
-#ifdef _MSC_VER
-#include <intrin.h>
-#endif
-
 #include "atcoder/internal_math"
 #include "atcoder/internal_type_traits"
 

@@ -77,8 +77,6 @@ static_assert(is_same<unsigned long long,
 
 static_assert(is_same<A, internal::to_unsigned_t<A>>::value, "");
 
-#ifndef _MSC_VER
-
 static_assert(internal::is_integral<__int128_t>::value, "");
 static_assert(internal::is_integral<__uint128_t>::value, "");
 static_assert(internal::is_integral<__int128>::value, "");
@@ -102,5 +100,3 @@ static_assert(
     std::is_same<unsigned __int128,
                  internal::make_unsigned_int128<__int128>::type>::value,
     "");
-
-#endif

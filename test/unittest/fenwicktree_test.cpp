@@ -163,8 +163,6 @@ TEST(FenwickTreeTest, OverFlow) {
     }
 }
 
-#ifndef _MSC_VER
-
 TEST(FenwickTreeTest, Int128) {
     fenwick_tree<__int128> fw(20);
     for (int i = 0; i < 20; i++) {
@@ -181,5 +179,3 @@ TEST(FenwickTreeTest, Int128) {
         }
     }
 }
-
-#endif
