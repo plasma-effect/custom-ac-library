@@ -1,6 +1,6 @@
-#include "atcoder/scc"
-#include "atcoder/modint"
+#include "atcoder/scc.hpp"
 #include <numeric>
+#include "atcoder/modint.hpp"
 
 #include <gtest/gtest.h>
 

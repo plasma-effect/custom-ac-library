@@ -1,5 +1,5 @@
-#include "atcoder/fenwicktree"
-#include "atcoder/modint"
+#include "atcoder/fenwicktree.hpp"
+#include "atcoder/modint.hpp"
 
 #include <numeric>
 

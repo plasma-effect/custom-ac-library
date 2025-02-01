@@ -1,4 +1,4 @@
-#include "atcoder/string"
+#include "atcoder/string.hpp"
 
 #include <algorithm>
 #include <numeric>
@@ -27,13 +27,15 @@ std::vector<int> lcp_naive(std::vector<int> s, std::vector<int> sa) {
     std::vector<int> lcp(n - 1);
     for (int i = 0; i < n - 1; i++) {
         int l = sa[i], r = sa[i + 1];
-        while (l + lcp[i] < n && r + lcp[i] < n && s[l + lcp[i]] == s[r + lcp[i]]) lcp[i]++;
+        while (l + lcp[i] < n && r + lcp[i] < n &&
+               s[l + lcp[i]] == s[r + lcp[i]])
+            lcp[i]++;
     }
     return lcp;
 }
 
 std::vector<int> z_naive(std::vector<int> s) {
-    int n = int(s.size());    
+    int n = int(s.size());
     std::vector<int> z(n);
     for (int i = 0; i < n; i++) {
         while (i + z[i] < n && s[z[i]] == s[i + z[i]]) z[i]++;
@@ -169,7 +171,7 @@ TEST(StringTest, InternalSAISNaive) {
                 max_c = std::max(max_c, s[i]);
                 g /= 4;
             }
-            
+
             auto sa = internal::sa_is<-1, -1>(s, max_c);
             ASSERT_EQ(sa_naive(s), sa);
         }
@@ -291,7 +293,8 @@ TEST(StringTest, ZAlgo) {
     ASSERT_EQ(std::vector<int>({4, 0, 2, 0}), z);
     ASSERT_EQ(std::vector<int>({4, 0, 2, 0}),
               z_algorithm(std::vector<int>{1, 10, 1, 10}));
-    ASSERT_EQ(z_naive({0, 0, 0, 0, 0, 0, 0}), z_algorithm({0, 0, 0, 0, 0, 0, 0}));
+    ASSERT_EQ(z_naive({0, 0, 0, 0, 0, 0, 0}),
+              z_algorithm({0, 0, 0, 0, 0, 0, 0}));
 }
 
 TEST(StringTest, ZNaive) {

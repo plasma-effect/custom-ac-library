@@ -6,11 +6,9 @@
 #include <functional>
 #include <vector>
 
-#include "atcoder/internal_bit"
+#include "atcoder/internal_bit.hpp"
 
 namespace atcoder {
-
-#if __cplusplus >= 201703L
 
 template <class S,
           auto op,
@@ -32,19 +30,6 @@ struct lazy_segtree {
         "composition must work as F(F, F)");
     static_assert(std::is_convertible_v<decltype(id), std::function<F()>>,
                   "id must work as F()");
-
-#else
-
-template <class S,
-          S (*op)(S, S),
-          S (*e)(),
-          class F,
-          S (*mapping)(F, S),
-          F (*composition)(F, F),
-          F (*id)()>
-struct lazy_segtree {
-
-#endif
 
   public:
     lazy_segtree() : lazy_segtree(0) {}

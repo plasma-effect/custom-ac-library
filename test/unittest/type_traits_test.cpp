@@ -1,4 +1,4 @@
-#include "atcoder/internal_type_traits"
+#include "atcoder/internal_type_traits.hpp"
 
 #include <type_traits>
 

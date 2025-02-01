@@ -1,4 +1,4 @@
-#include "atcoder/twosat"
+#include "atcoder/twosat.hpp"
 
 #include <numeric>
 #include "../utils/random.hpp"

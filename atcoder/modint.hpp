@@ -5,8 +5,8 @@
 #include <numeric>
 #include <type_traits>
 
-#include "atcoder/internal_math"
-#include "atcoder/internal_type_traits"
+#include "atcoder/internal_math.hpp"
+#include "atcoder/internal_type_traits.hpp"
 
 namespace atcoder {
 

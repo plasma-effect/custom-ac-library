@@ -1,5 +1,5 @@
-#include "atcoder/maxflow"
-#include "atcoder/mincostflow"
+#include "atcoder/mincostflow.hpp"
+#include "atcoder/maxflow.hpp"
 
 #include "../utils/random.hpp"
 

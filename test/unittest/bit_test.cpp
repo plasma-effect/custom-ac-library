@@ -1,4 +1,4 @@
-#include "atcoder/internal_bit"
+#include "atcoder/internal_bit.hpp"
 
 #include <numeric>
 
@@ -38,7 +38,8 @@ TEST(BitTest, CountrZero) {
     ASSERT_EQ(30, internal::countr_zero(1U << 30));
     ASSERT_EQ(0, internal::countr_zero((1U << 31) - 1));
     ASSERT_EQ(31, internal::countr_zero(1U << 31));
-    ASSERT_EQ(0, internal::countr_zero(std::numeric_limits<unsigned int>::max()));
+    ASSERT_EQ(0,
+              internal::countr_zero(std::numeric_limits<unsigned int>::max()));
 }
 
 TEST(BitTest, CountrZeroConstexpr) {
@@ -54,6 +55,6 @@ TEST(BitTest, CountrZeroConstexpr) {
     ASSERT_EQ(30, internal::countr_zero_constexpr(1U << 30));
     ASSERT_EQ(0, internal::countr_zero_constexpr((1U << 31) - 1));
     ASSERT_EQ(31, internal::countr_zero_constexpr(1U << 31));
-    ASSERT_EQ(0,
-              internal::countr_zero_constexpr(std::numeric_limits<unsigned int>::max()));
+    ASSERT_EQ(0, internal::countr_zero_constexpr(
+                     std::numeric_limits<unsigned int>::max()));
 }

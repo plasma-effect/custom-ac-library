@@ -1,4 +1,4 @@
-#include "atcoder/math"
+#include "atcoder/math.hpp"
 
 #include <numeric>
 
@@ -71,7 +71,7 @@ TEST(MathTest, InvBoundHand) {
 
 TEST(MathTest, InvMod) {
     for (int a = -100; a <= 100; a++) {
-        for (int b = 1; b <= 1000; b++) {            
+        for (int b = 1; b <= 1000; b++) {
             if (gcd(internal::safe_mod(a, b), b) != 1) continue;
             ll c = inv_mod(a, b);
             ASSERT_LE(0, c);

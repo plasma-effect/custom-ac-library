@@ -1,4 +1,4 @@
-#include "atcoder/lazysegtree"
+#include "atcoder/lazysegtree.hpp"
 
 #include "../utils/random.hpp"
 

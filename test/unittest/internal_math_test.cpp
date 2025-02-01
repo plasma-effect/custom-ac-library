@@ -1,4 +1,4 @@
-#include "atcoder/internal_math"
+#include "atcoder/internal_math.hpp"
 
 #include "../utils/math.hpp"
 

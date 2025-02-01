@@ -1,5 +1,5 @@
-#include "atcoder/internal_math"
-#include "atcoder/math"
+#include "atcoder/internal_math.hpp"
+#include "atcoder/math.hpp"
 
 #include <vector>
 
@@ -20,7 +20,8 @@ std::vector<int> factors(int m) {
 bool is_primitive_root(int m, int g) {
     assert(1 <= g && g < m);
     for (int x : factors(m - 1)) {
-        if (atcoder::internal::pow_mod_constexpr(g, (m - 1) / x, m) == 1) return false;
+        if (atcoder::internal::pow_mod_constexpr(g, (m - 1) / x, m) == 1)
+            return false;
     }
     return true;
 }

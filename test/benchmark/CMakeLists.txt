@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.17)
 set(GOOGLETEST_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../unittest/googletest")
 
 if(NOT "${CMAKE_CXX_STANDARD}")
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 20)
 endif()
 set(CMAKE_CXX_EXTENSIONS OFF)
 

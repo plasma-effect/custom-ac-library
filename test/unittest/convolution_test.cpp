@@ -1,5 +1,5 @@
-#include "atcoder/convolution"
-#include "atcoder/modint"
+#include "atcoder/convolution.hpp"
+#include "atcoder/modint.hpp"
 
 #include <random>
 #include "../utils/random.hpp"

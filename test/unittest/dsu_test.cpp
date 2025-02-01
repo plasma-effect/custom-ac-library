@@ -1,4 +1,4 @@
-#include "atcoder/dsu"
+#include "atcoder/dsu.hpp"
 
 #include <numeric>
 

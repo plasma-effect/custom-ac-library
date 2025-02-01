@@ -1,4 +1,4 @@
-#include "atcoder/maxflow"
+#include "atcoder/maxflow.hpp"
 #include "../utils/random.hpp"
 
 #include <numeric>
@@ -100,7 +100,7 @@ TEST(MaxflowTest, Twice) {
     ASSERT_EQ(0, g.add_edge(0, 1, 1));
     ASSERT_EQ(1, g.add_edge(0, 2, 1));
     ASSERT_EQ(2, g.add_edge(1, 2, 1));
-    
+
     ASSERT_EQ(2, g.flow(0, 2));
 
     e = {0, 1, 1, 1};
@@ -207,7 +207,7 @@ TEST(MaxflowTest, Stress) {
         int dual = 0;
         auto cut = g.min_cut(s);
         std::vector<int> v_flow(n);
-        for (auto e: g.edges()) {
+        for (auto e : g.edges()) {
             v_flow[e.from] -= e.flow;
             v_flow[e.to] += e.flow;
             if (cut[e.from] && !cut[e.to]) dual += e.cap;

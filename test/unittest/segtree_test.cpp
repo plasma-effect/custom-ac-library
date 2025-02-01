@@ -1,4 +1,4 @@
-#include "atcoder/segtree"
+#include "atcoder/segtree.hpp"
 
 #include <string>
 #include <vector>
@@ -154,18 +154,16 @@ std::string op_const(const std::string& a, const std::string& b) {
     return a + b;
 }
 
-TEST(SegtreeTest, ConstFunc) {
-    segtree<std::string, op_const, e> s1(10);
-}
+TEST(SegtreeTest, ConstFunc) { segtree<std::string, op_const, e> s1(10); }
 
 #endif
 
 #if __cplusplus >= 202002L
 
 TEST(SegtreeTest, LambdaFunc) {
-    segtree<std::string, [](std::string a, std::string b) {
-        return a + b;
-    }, []() { return ""; }> s1(10);
+    segtree<std::string, [](std::string a, std::string b) { return a + b; },
+            []() { return ""; }>
+        s1(10);
 }
 
 #endif
