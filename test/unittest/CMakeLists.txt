@@ -37,7 +37,6 @@ add_executable(AllTest
   scc_test.cpp
   string_test.cpp
   type_traits_test.cpp
-  bit_test.cpp
   dsu_test.cpp
   internal_math_test.cpp
   lazysegtree_test.cpp

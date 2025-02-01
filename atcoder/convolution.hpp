@@ -3,11 +3,11 @@
 
 #include <algorithm>
 #include <array>
+#include <bit>
 #include <cassert>
 #include <type_traits>
 #include <vector>
 
-#include "atcoder/internal_bit.hpp"
 #include "atcoder/modint.hpp"
 
 namespace atcoder {
@@ -18,7 +18,8 @@ template <class mint,
           int g = internal::primitive_root<mint::mod()>,
           internal::is_static_modint_t<mint>* = nullptr>
 struct fft_info {
-    static constexpr int rank2 = countr_zero_constexpr(mint::mod() - 1);
+    static constexpr int rank2 =
+        std::countr_zero((unsigned int)(mint::mod() - 1));
     std::array<mint, rank2 + 1> root;   // root[i]^(2^i) == 1
     std::array<mint, rank2 + 1> iroot;  // root[i] * iroot[i] == 1
 
@@ -60,7 +61,7 @@ struct fft_info {
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 void butterfly(std::vector<mint>& a) {
     int n = int(a.size());
-    int h = internal::countr_zero((unsigned int)n);
+    int h = std::countr_zero((unsigned int)n);
 
     static const fft_info<mint> info;
 
@@ -78,7 +79,7 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset + p] = l - r;
                 }
                 if (s + 1 != (1 << len))
-                    rot *= info.rate2[countr_zero(~(unsigned int)(s))];
+                    rot *= info.rate2[std::countr_zero(~(unsigned int)(s))];
             }
             len++;
         } else {
@@ -104,7 +105,7 @@ void butterfly(std::vector<mint>& a) {
                     a[i + offset + 3 * p] = a0 + na2 + (mod2 - a1na3imag);
                 }
                 if (s + 1 != (1 << len))
-                    rot *= info.rate3[countr_zero(~(unsigned int)(s))];
+                    rot *= info.rate3[std::countr_zero(~(unsigned int)(s))];
             }
             len += 2;
         }
@@ -114,7 +115,7 @@ void butterfly(std::vector<mint>& a) {
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 void butterfly_inv(std::vector<mint>& a) {
     int n = int(a.size());
-    int h = internal::countr_zero((unsigned int)n);
+    int h = std::countr_zero((unsigned int)n);
 
     static const fft_info<mint> info;
 
@@ -135,7 +136,7 @@ void butterfly_inv(std::vector<mint>& a) {
                     ;
                 }
                 if (s + 1 != (1 << (len - 1)))
-                    irot *= info.irate2[countr_zero(~(unsigned int)(s))];
+                    irot *= info.irate2[std::countr_zero(~(unsigned int)(s))];
             }
             len--;
         } else {
@@ -167,7 +168,7 @@ void butterfly_inv(std::vector<mint>& a) {
                         irot3.val();
                 }
                 if (s + 1 != (1 << (len - 2)))
-                    irot *= info.irate3[countr_zero(~(unsigned int)(s))];
+                    irot *= info.irate3[std::countr_zero(~(unsigned int)(s))];
             }
             len -= 2;
         }

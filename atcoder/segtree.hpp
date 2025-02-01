@@ -6,8 +6,6 @@
 #include <functional>
 #include <vector>
 
-#include "atcoder/internal_bit.hpp"
-
 namespace atcoder {
 
 template <class S, auto op, auto e> struct segtree {
@@ -21,7 +19,7 @@ template <class S, auto op, auto e> struct segtree {
     explicit segtree(int n) : segtree(std::vector<S>(n, e())) {}
     explicit segtree(const std::vector<S>& v) : _n(int(v.size())) {
         size = (int)std::bit_ceil((unsigned int)(_n));
-        log = internal::countr_zero((unsigned int)size);
+        log = std::countr_zero((unsigned int)size);
         d = std::vector<S>(2 * size, e());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];
         for (int i = size - 1; i >= 1; i--) {

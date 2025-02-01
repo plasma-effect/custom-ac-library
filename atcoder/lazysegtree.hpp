@@ -6,8 +6,6 @@
 #include <functional>
 #include <vector>
 
-#include "atcoder/internal_bit.hpp"
-
 namespace atcoder {
 
 template <class S,
@@ -36,7 +34,7 @@ struct lazy_segtree {
     explicit lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
     explicit lazy_segtree(const std::vector<S>& v) : _n(int(v.size())) {
         size = (int)std::bit_ceil((unsigned int)(_n));
-        log = internal::countr_zero((unsigned int)size);
+        log = std::countr_zero((unsigned int)size);
         d = std::vector<S>(2 * size, e());
         lz = std::vector<F>(size, id());
         for (int i = 0; i < _n; i++) d[size + i] = v[i];

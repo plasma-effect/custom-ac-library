@@ -1,6 +1,6 @@
 # Custom AC(AtCoder) Library
 
-AC(AtCoder) Libraryの自分用の改造です。
+AC(AtCoder) Libraryの自分用の改造です。必要最低限以外のファイルは削除しています。
 
 ## 目的
 
