@@ -1,6 +1,5 @@
 cc_library(
     name = "ac_library",
-    hdrs = glob(["*.hpp"]) + ["all"],
-    include_prefix = "atcoder",
+    hdrs = glob(["atcoder/*.hpp"]) + ["atcoder/all"],
     visibility = ["//visibility:public"],
 )

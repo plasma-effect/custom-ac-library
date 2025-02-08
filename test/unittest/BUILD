@@ -2,7 +2,7 @@ cc_test(
     name = "ac_library_test",
     srcs = glob(["*.cpp"]),
     deps = [
-      "//atcoder:ac_library",
+      "//:ac_library",
       "//test/utils",
       "@googletest//:gtest",
       "@googletest//:gtest_main"
