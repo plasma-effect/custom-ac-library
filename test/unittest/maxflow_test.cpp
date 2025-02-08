@@ -1,5 +1,5 @@
 #include "atcoder/maxflow.hpp"
-#include "../utils/random.hpp"
+#include "utils/random.hpp"
 
 #include <numeric>
 #include <tuple>

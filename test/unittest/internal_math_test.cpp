@@ -1,6 +1,6 @@
 #include "atcoder/internal_math.hpp"
 
-#include "../utils/math.hpp"
+#include "utils/math.hpp"
 
 #include <gtest/gtest.h>
 #include <numeric>

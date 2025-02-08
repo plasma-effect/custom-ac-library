@@ -1,7 +1,7 @@
 #include "atcoder/twosat.hpp"
 
 #include <numeric>
-#include "../utils/random.hpp"
+#include "utils/random.hpp"
 
 #include <gtest/gtest.h>
 

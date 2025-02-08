@@ -2,7 +2,7 @@
 #include "atcoder/modint.hpp"
 
 #include <random>
-#include "../utils/random.hpp"
+#include "utils/random.hpp"
 
 #include <gtest/gtest.h>
 

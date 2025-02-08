@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <numeric>
-#include "../utils/math.hpp"
+#include "utils/math.hpp"
 
 TEST(UtilsMathTest, FactorsTest) {
     for (int m = 1; m <= 50000; m++) {
